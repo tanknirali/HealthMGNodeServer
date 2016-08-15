@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/bootstrap.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+      	<% include header %>
+      </div>
+
+      <div>
+        <h2>List of people who has given you the permission:</h2> <br>
+       	<ul>
+       		<% Patients.forEach(function(Patient) { %>
+       			<li><%= Patient.permissionBy %> </li>
+       		<% }); %>
+       	</ul>
+        
+      </div>
+
+      <footer class="footer">
+        <% include footer %>
+      </footer>
+
+    </div> 
+  </body>
+</html>

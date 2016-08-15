@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
+  <style type="text/css">
+
+  </style>
+
+  <title><%= title %></title>
+
+  <script type='text/javascript'>
+  
+	$(function () {
+    
+    Highcharts.setOptions({
+        global : {
+            useUTC : false
+        }
+    });
+    
+    
+
+    // Create the chart for first time loading    
+    $('#container').highcharts('StockChart',{
+      chart: {
+                events : {
+                load : function () {					    
+                    var series = this.series[0];
+                    var chart = $('#container').highcharts();
+                    oldtime = 0;
+                    hr = 50;
+                    setInterval(function () {                    	
+						$.get('/grab',function(data) { // Call grab function every 5 seconds        					
+        					if (parseFloat(data[0]['time']) > oldtime){
+        						oldtime = parseFloat(data[0]['time']);
+        						series.addPoint([parseFloat(data[0]['time']), parseFloat(data[0]['heartrate'])], true, true);
+        						//Above line adds new point to series
+        						//chart.redraw();
+        					}							
+						});		
+                        
+                    }, 5000);
+					}
+				}	
+	  },
+	  
+	  rangeSelector: {
+            buttons: [{
+                count: 1,
+                type: 'minute',
+                text: '1 Min'
+            }, {
+                count: 5,
+                type: 'minute',
+                text: '5 Min'
+            }, {
+                type: 'all',
+                text: 'All'
+            }],
+            inputEnabled: false,
+            selected: 2
+        },
+	  
+	  
+      title: {
+        text: 'Heartrate'
+      },
+      subtitle: {
+        text: 'Heartrate vs Time'
+      },
+      xAxis: {
+        //type: 'time'
+      },
+      yAxis: {
+        title: {
+          text: 'Heartrate (per minute)'
+        }
+
+      },
+      
+
+      series: [{
+        name: 'Heartrate',        
+        data : (function () {                
+                var data = [], i;
+				var resultData = <%- JSON.stringify(result) %>;				
+                for (i = resultData.length - 1; i >= 0; i -= 1) {              	
+                    data.push([
+                        parseFloat(resultData[i]['time']),
+                        parseFloat(resultData[i]['heartrate'])
+                    ]);                    
+                }
+                return data;  //Pull entire data set for first time
+            }())
+		}]    
+    }); 
+});  	
+  </script>
+</head>
+
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<a href="calorie.ejs">Calorie</a>
+<a href="steps.ejs">Steps</a>
+</body>
+
+</html>

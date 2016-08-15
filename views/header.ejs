@@ -1,0 +1,20 @@
+<nav> 
+  <ul class="nav nav-pills pull-right ">
+  	<% if(user) { %>
+  	<li role="presentation"><a href="/users/dashboard">Dashboard</a></li>
+  	<li role="presentation"><a href="/users/permission">Permissions</a></li>
+  	<li role="presentation"><a href="/users/others-data">View Other's Data</a></li>
+    <li role="presentation"><a href="/users/logout">Logout</a></li>
+    <% }else { %>
+    <li role="presentation"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/users/login">Login</a></li>
+    <li role="presentation"><a href="/users/register">Register</a></li>
+    <% } %>
+  </ul>
+  <h3 class="text-muted">HealthMG</h3>
+</nav>
+
+
+
+      
+     

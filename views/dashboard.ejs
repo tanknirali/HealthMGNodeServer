@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link rel='stylesheet' href='/css/bootstrap.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+      	<% include header %>
+      </div>
+
+      <div>
+        <h2>Welcome <%= user.name %></h2> <br>
+        View your Health Data: <br>
+      </div>  
+      
+      <div class="row marketing">
+       <div class="col-lg-4">
+	   	<button class="btn btn-default">Calories</button> 
+	   </div>
+	
+	   <div class="col-lg-4">
+	   	<button class="btn btn-default">Steps Taken</button>
+	   </div>
+	   
+	   <div class="col-lg-4">
+	   	<button class="btn btn-default">Heart-rate</button>  
+	   </div>
+	   
+      </div>
+      
+     
+
+      <footer class="footer">
+        <% include footer %>
+      </footer>
+
+    </div> 
+  </body>
+</html>

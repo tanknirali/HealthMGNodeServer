@@ -1,0 +1,27 @@
+{
+  "name": "CMPE-Project-295B",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "~1.4.1",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongoose": "^4.5.2",
+    "morgan": "~1.6.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "serve-favicon": "~2.3.0"
+  }
+}
